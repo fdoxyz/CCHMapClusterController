@@ -193,6 +193,15 @@
     return annotationView;
 }
 
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    CCHMapClusterAnnotation *clusterAnnotation = (CCHMapClusterAnnotation *) view.annotation;
+    
+    if (clusterAnnotation.annotations.count > 1) {
+        [mapView showAnnotations:clusterAnnotation.annotations.allObjects animated:true];
+    }
+    
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"mapToSettings"]) {
